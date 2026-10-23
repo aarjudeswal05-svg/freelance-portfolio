@@ -6,6 +6,8 @@
   <title>Aarju Deswal — Website Designer for Cafés &amp; Small Businesses</title>
   <meta name="description" content="Aarju Deswal designs and builds clean, responsive websites for cafés, small businesses and startups using HTML, CSS and JavaScript.">
   <meta name="theme-color" content="#F8F6F0">
+  <!-- Marks JavaScript as available before first paint, so the mobile menu styles apply without a flash -->
+  <script>document.documentElement.classList.add("js");</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +24,14 @@
         <span class="brand-name">Aarju Deswal</span>
       </a>
 
-      <nav class="site-nav" aria-label="Primary">
+      <!-- Shown on small screens when JavaScript is available (js/main.js).
+           It comes before the nav so Tab moves straight from the button into the open menu. -->
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        Menu
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
         <ul class="nav-list">
           <li><a href="#work">Work</a></li>
           <li><a href="#services">Services</a></li>
@@ -35,6 +44,9 @@
 
       <a class="btn btn-small btn-ghost header-cta" href="#contact">Let’s talk</a>
     </div>
+
+    <!-- Decorative: screen readers already report scroll position, so this is hidden from them -->
+    <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
   <main id="main">
@@ -454,5 +466,7 @@
 
   <!-- Keeps the copyright year current; the static year above is the no-JS fallback -->
   <script>document.querySelector("[data-year]").textContent = new Date().getFullYear();</script>
+  <!-- If main.js can't load, drop the "js" class so the no-JS navigation row is used instead -->
+  <script src="js/main.js" defer onerror="document.documentElement.classList.remove('js')"></script>
 </body>
 </html>

@@ -311,6 +311,87 @@ a {
   transform: scaleX(1);
 }
 
+/* Section currently in view (set by js/main.js): darker text plus a lasting underline */
+.nav-list a[aria-current] {
+  color: var(--color-ink);
+}
+
+.nav-list a[aria-current]::after {
+  transform: scaleX(1);
+}
+
+/* Mobile menu button: only shown on small screens with JavaScript (see section 8) */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0 0.25rem;
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  font: 500 0.875rem/1 var(--font-body);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+/* Two lines that turn into a cross while the menu is open */
+.menu-icon {
+  position: relative;
+  width: 1.25rem;
+  height: 0.5rem;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.25s var(--ease), top 0.25s var(--ease);
+}
+
+.menu-icon::before {
+  top: 0;
+}
+
+.menu-icon::after {
+  top: calc(100% - 1.5px);
+}
+
+.is-open .menu-icon::before,
+.is-open .menu-icon::after {
+  top: calc(50% - 0.75px);
+}
+
+.is-open .menu-icon::before {
+  transform: rotate(45deg);
+}
+
+.is-open .menu-icon::after {
+  transform: rotate(-45deg);
+}
+
+/* Reading progress along the header's bottom edge; JavaScript only */
+.scroll-progress {
+  display: none;
+}
+
+.js .scroll-progress {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px; /* sits over the header's border line */
+  height: 2px;
+  background: var(--color-olive);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
 /* ---------- 6. Hero ---------- */
 .hero {
   position: relative;
@@ -1083,7 +1164,8 @@ a {
 }
 
 /* Small screens: the nav moves to its own scrollable row under the brand.
-   (Stage 5 adds a JavaScript menu toggle; this layout stays as the no-JS fallback.) */
+   (With JavaScript this becomes a dropdown menu, see the end of this section;
+   the scrolling row stays as the no-JS fallback.) */
 @media (max-width: 760px) {
   :root {
     --header-h: 7rem;
@@ -1166,6 +1248,75 @@ a {
 
   .hero-card {
     padding: var(--space-3);
+  }
+}
+
+/* Small screens with JavaScript: one header row and a "Menu" dropdown.
+   The .js prefix lets these rules override the no-JS row above. */
+@media (max-width: 760px) {
+  html.js {
+    --header-h: 4.75rem;
+  }
+
+  .js .header-inner {
+    flex-wrap: nowrap;
+    padding-block: 0;
+  }
+
+  /* Brand on the left; Menu and "Let's talk" grouped on the right */
+  .js .menu-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  /* Closed menu is display: none, so its links can't be reached with Tab */
+  .js .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: auto;
+    max-height: calc(100vh - var(--header-h)); /* scrolls on short landscape screens */
+    margin: 0;
+    overflow: auto;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+    box-shadow: 0 24px 40px -32px rgb(36 40 32 / 0.4);
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .js .is-open .site-nav {
+    display: block;
+  }
+
+  .js .site-nav .nav-list {
+    flex-direction: column;
+    gap: 0;
+    width: auto;
+    padding: var(--space-1) var(--gutter) var(--space-3);
+  }
+
+  .js .nav-list li + li {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .js .nav-list a {
+    display: flex;
+    padding-block: 0.85rem;
+    color: var(--color-ink);
+    font: 400 1.375rem/1.2 var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  /* Underline becomes a short olive rule at the right end of the row */
+  .js .nav-list a::after {
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    width: 1.5rem;
+    transform-origin: right;
   }
 }
 
