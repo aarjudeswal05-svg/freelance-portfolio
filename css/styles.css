@@ -6,7 +6,7 @@
    4. Buttons & links
    5. Header & navigation
    6. Hero
-   7. Sections
+   7. Sections — shared heads, About, Services, Skills, Process
    8. Responsive
    9. Reduced motion
    ========================================================= */
@@ -22,6 +22,8 @@
   --color-accent-strong: #8A3A22;
   --color-on-accent: #FFFFFF;
   --color-line: #DDD5C8;        /* hairlines & borders */
+  --color-line-strong: #CDBFAE; /* card border on hover */
+  --color-accent-tint: #F2E6DD; /* icon backgrounds */
 
   /* Type */
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -417,6 +419,219 @@ a {
   letter-spacing: -0.02em;
 }
 
+.section-head {
+  margin-bottom: var(--space-5);
+}
+
+.section-intro {
+  max-width: 38rem;
+  margin-top: var(--space-3);
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+}
+
+/* Two-column layout: heading left, content right */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+}
+
+.split .section-head {
+  margin-bottom: 0;
+}
+
+/* About */
+.prose {
+  max-width: 40rem;
+  font-size: var(--text-lg);
+}
+
+.prose p + p {
+  margin-top: var(--space-3);
+}
+
+.fact-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--space-4);
+  max-width: 40rem;
+  margin-top: var(--space-5);
+}
+
+.fact-list > div {
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--color-line);
+}
+
+.fact-list dt {
+  color: var(--color-ink-soft);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fact-list dd {
+  margin: 0.25rem 0 0;
+  font-weight: 500;
+}
+
+/* Services */
+.card-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.card-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.card:hover {
+  border-color: var(--color-line-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: var(--space-3);
+  border-radius: 50%;
+  background: var(--color-accent-tint);
+  color: var(--color-accent);
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.card-icon svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card:hover .card-icon {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.card-title {
+  font: 500 1.375rem/1.25 var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.card-text {
+  margin-top: var(--space-1);
+  color: var(--color-ink-soft);
+}
+
+.scope-note {
+  max-width: 44rem;
+  margin-top: var(--space-4);
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-ink-soft);
+  font-size: 0.9375rem;
+}
+
+.scope-note strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* Skills */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--color-line);
+}
+
+.skill {
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.skill-name {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font: 500 1.375rem/1.25 var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.skill-name::before {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.skill-text {
+  max-width: 22rem;
+  margin-top: var(--space-1);
+  color: var(--color-ink-soft);
+  font-size: 0.9375rem;
+}
+
+/* Process */
+.process-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--space-3);
+  border-top: 1.5px solid var(--color-ink);
+}
+
+.step-number {
+  color: var(--color-accent);
+  font: 400 2.5rem/1 var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.step-title {
+  margin-top: var(--space-3);
+  font: 500 1.375rem/1.25 var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.step-text {
+  margin-top: var(--space-1);
+  color: var(--color-ink-soft);
+  font-size: 0.9375rem;
+}
+
+.step-outcome {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.step-outcome span {
+  display: block;
+  color: var(--color-ink-soft);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 /* ---------- 8. Responsive ---------- */
 @media (max-width: 900px) {
   .hero-grid {
@@ -426,6 +641,35 @@ a {
 
   .hero-card {
     max-width: 32rem;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .process-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--space-5);
+  }
+}
+
+@media (max-width: 640px) {
+  .card-grid--2,
+  .skill-grid,
+  .process-list {
+    grid-template-columns: 1fr;
+  }
+
+  .skill {
+    padding-right: 0;
+  }
+
+  .fact-list {
+    grid-template-columns: 1fr;
   }
 }
 
