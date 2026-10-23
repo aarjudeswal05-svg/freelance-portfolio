@@ -466,6 +466,7 @@ a {
 }
 
 .badge {
+  display: inline-block; /* fits its text when not inside a flex row */
   padding: 0.2rem 0.6rem;
   border: 1px solid var(--color-caramel);
   border-radius: var(--radius);
@@ -584,6 +585,133 @@ a {
 
 .split .section-head {
   margin-bottom: 0;
+}
+
+/* Work — case study: framed desktop screenshot with an overlapping phone view */
+.case-visual {
+  position: relative;
+  margin: 0;
+  padding-bottom: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+}
+
+.case-frame {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+}
+
+.case-frame img {
+  width: 100%;
+  height: auto;
+  background: var(--color-bg-alt); /* placeholder tone while the image loads */
+}
+
+.case-frame--desktop {
+  padding: clamp(0.4rem, 0.2rem + 0.8vw, 0.875rem);
+  border-radius: var(--radius);
+}
+
+/* Phone keeps a little rounding so it reads as a device */
+.case-frame--phone {
+  position: absolute;
+  right: 5%;
+  bottom: 0;
+  width: clamp(5.75rem, 4rem + 9vw, 13rem);
+  padding: clamp(0.25rem, 0.15rem + 0.4vw, 0.45rem);
+  border-radius: 12px;
+  box-shadow: 0 24px 48px -28px rgb(36 40 32 / 0.45);
+}
+
+.case-frame--phone img {
+  border-radius: 8px;
+}
+
+.case-caption {
+  max-width: 60%;
+  margin-top: var(--space-2);
+  color: var(--color-ink-soft);
+  font-size: 0.8125rem;
+}
+
+.case-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-4) clamp(2rem, 1rem + 5vw, 6rem);
+  padding-top: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  border-top: 1px solid var(--color-ink);
+}
+
+.case-title {
+  margin-top: var(--space-3);
+  font: 400 clamp(2rem, 1.5rem + 2vw, 3.25rem)/1.05 var(--font-display);
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144;
+}
+
+.case-text {
+  max-width: 34rem;
+  margin-top: var(--space-2);
+  color: var(--color-ink-soft);
+}
+
+.case-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.case-meta > div {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: var(--space-2);
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.case-meta > div:first-child {
+  padding-top: 0;
+}
+
+.case-meta dt,
+.case-subtitle {
+  color: var(--color-ink-soft);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.case-meta dt {
+  padding-top: 0.2rem;
+}
+
+.case-meta dd {
+  margin: 0;
+}
+
+.case-subtitle {
+  margin-top: var(--space-4);
+}
+
+.case-features {
+  margin-top: var(--space-1);
+}
+
+.case-features li {
+  position: relative;
+  padding: 0.7rem 0 0.7rem 1.5rem;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 0.9375rem;
+}
+
+.case-features li::before {
+  content: "";
+  position: absolute;
+  top: 1.35rem;
+  left: 0;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--color-olive);
 }
 
 /* Services — numbered editorial list */
@@ -813,7 +941,8 @@ a {
   }
 
   .split,
-  .section-head--row {
+  .section-head--row,
+  .case-body {
     grid-template-columns: 1fr;
   }
 
@@ -951,8 +1080,14 @@ a {
 }
 
 @media (max-width: 420px) {
-  .hero-actions .btn {
+  .hero-actions .btn,
+  .case-actions .btn {
     flex: 1 1 100%;
+  }
+
+  .case-meta > div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
   }
 
   .hero-card {
