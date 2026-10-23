@@ -8,7 +8,8 @@
    6. Hero
    7. Sections — shared heads, About, Services, Skills, Process, Contact, footer
    8. Responsive
-   9. Reduced motion
+   9. Motion — hero entrance, scroll reveals, project hover
+   10. Reduced motion
    ========================================================= */
 
 /* ---------- 1. Design tokens ---------- */
@@ -166,7 +167,12 @@ a {
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.25s var(--ease), color 0.25s var(--ease),
-    border-color 0.25s var(--ease);
+    border-color 0.25s var(--ease), transform 0.12s var(--ease);
+}
+
+/* Pressed: a 1px dip, so the state doesn't rely on colour */
+.btn:active {
+  transform: translateY(1px);
 }
 
 .btn-arrow {
@@ -333,6 +339,11 @@ a {
   font: 500 0.875rem/1 var(--font-body);
   letter-spacing: 0.02em;
   cursor: pointer;
+  transition: transform 0.12s var(--ease);
+}
+
+.menu-toggle:active {
+  transform: translateY(1px);
 }
 
 /* Two lines that turn into a cross while the menu is open */
@@ -1269,6 +1280,15 @@ a {
     margin-left: auto;
   }
 
+  /* Comfortable 44px tap target */
+  .js .header-cta {
+    min-height: 2.75rem;
+  }
+
+  .js .brand-name {
+    white-space: nowrap;
+  }
+
   /* Closed menu is display: none, so its links can't be reached with Tab */
   .js .site-nav {
     display: none;
@@ -1277,9 +1297,12 @@ a {
     left: 0;
     right: 0;
     width: auto;
-    max-height: calc(100vh - var(--header-h)); /* scrolls on short landscape screens */
+    /* Scrolls on its own on short screens; dvh excludes mobile browser toolbars */
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
     margin: 0;
     overflow: auto;
+    overscroll-behavior: contain; /* scrolling the menu doesn't scroll the page behind */
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-line);
     box-shadow: 0 24px 40px -32px rgb(36 40 32 / 0.4);
@@ -1320,7 +1343,123 @@ a {
   }
 }
 
-/* ---------- 9. Reduced motion ---------- */
+/* Phones with the JavaScript menu: the links have moved into the menu,
+   which frees room to keep "Let's talk" in the header, slightly tightened */
+@media (max-width: 400px) {
+  .js .header-inner {
+    column-gap: 0.5rem;
+  }
+
+  .js .brand-name {
+    font-size: 1.125rem;
+  }
+
+  .js .menu-toggle {
+    gap: 0.45rem;
+    padding: 0 0.15rem;
+  }
+
+  .js .header-cta {
+    display: inline-flex;
+    padding-inline: 0.75rem;
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+}
+
+/* The smallest phones keep just the "ad" monogram; the link's accessible
+   name still reads "Aarju Deswal, back to top" */
+@media (max-width: 374px) {
+  .js .brand-name {
+    display: none;
+  }
+}
+
+/* ---------- 9. Motion ----------
+   Everything here only runs when the visitor hasn't asked for reduced motion.
+   Hidden starting states use opacity only, so content stays in the
+   accessibility tree, and none of them can get stuck:
+   - the hero uses CSS animations, which always finish on their own;
+   - scroll reveals only hide elements that js/main.js has given the
+     .reveal class, which it does at the same moment it starts watching them. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance: a short rise, staggered down the page */
+  .js .hero-meta,
+  .js .hero-title,
+  .js .hero-lede,
+  .js .hero-actions,
+  .js .hero-card {
+    animation: rise-in 0.7s var(--ease) both;
+  }
+
+  .js .hero-title  { animation-delay: 0.08s; }
+  .js .hero-lede   { animation-delay: 0.16s; }
+  .js .hero-actions { animation-delay: 0.22s; }
+  .js .hero-card   { animation-delay: 0.28s; }
+
+  /* Scroll reveals. Hiding is instant; only the reveal is animated. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  /* Keyboard users never focus something invisible */
+  .reveal:focus-within {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* Right-hand columns and list items follow a beat behind */
+  .split > .prose,
+  .contact-body,
+  .service:nth-child(2),
+  .step:nth-child(2) {
+    --reveal-delay: 0.08s;
+  }
+
+  .service:nth-child(3),
+  .step:nth-child(3) {
+    --reveal-delay: 0.16s;
+  }
+
+  .service:nth-child(4),
+  .step:nth-child(4) {
+    --reveal-delay: 0.24s;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Case study: the screenshots lift slightly on hover. No scaling, so nothing is cropped. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .case-frame {
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  }
+
+  .case-visual:hover .case-frame--desktop {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 48px -36px rgb(36 40 32 / 0.35);
+  }
+
+  .case-visual:hover .case-frame--phone {
+    transform: translateY(-10px);
+  }
+}
+
+/* ---------- 10. Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1330,7 +1469,9 @@ a {
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
   }
 }

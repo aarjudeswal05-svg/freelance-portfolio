@@ -3,6 +3,7 @@
    1. Mobile menu
    2. Active section in the navigation
    3. Scroll progress
+   4. Reveal on scroll
    ========================================================= */
 
 const header = document.querySelector(".site-header");
@@ -128,3 +129,36 @@ function queueProgressUpdate() {
 window.addEventListener("scroll", queueProgressUpdate, { passive: true });
 window.addEventListener("resize", queueProgressUpdate);
 updateProgress();
+
+/* ---------- 4. Reveal on scroll ---------- */
+// Elements fade up once as they come into view, then stay visible.
+// Skipped entirely for visitors who prefer reduced motion.
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!prefersReducedMotion) {
+  // In page order, so "everything before this one" is easy to find
+  const revealTargets = [...document.querySelectorAll(
+    "main .section-head, .split > .prose, .case-visual, .case-body, .service, .scope-note, " +
+    ".fact-strip, .step, .skill-list, .contact-body"
+  )];
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      // Also reveal everything earlier in the page. After a reload part-way down,
+      // or a jump straight to a section, those elements are above the screen
+      // and would otherwise never cross into view to be revealed.
+      const index = revealTargets.indexOf(entry.target);
+      revealTargets.slice(0, index + 1).forEach((element) => {
+        element.classList.add("is-revealed");
+        revealObserver.unobserve(element); // each element only animates once
+      });
+    });
+  }, { rootMargin: "0px 0px -8% 0px" });
+
+  revealTargets.forEach((element) => {
+    // The class (which hides it) and the observer (which shows it) are added together
+    element.classList.add("reveal");
+    revealObserver.observe(element);
+  });
+}
