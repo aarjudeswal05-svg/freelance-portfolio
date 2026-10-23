@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- "ad" monogram from the site header: ink circle, light italic serif.
+       The caramel ring keeps it visible on dark browser tabs. -->
+  <circle cx="32" cy="32" r="30" fill="#242820" stroke="#B78D69" stroke-width="3"/>
+  <text x="32" y="41.5" text-anchor="middle" fill="#F8F6F0" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-style="italic" letter-spacing="-1">ad</text>
+</svg>

@@ -919,6 +919,14 @@ a {
   font: inherit;
 }
 
+/* Standalone text links get a taller tap area (44px+). The equal negative
+   margin cancels the padding, so nothing around them moves. */
+.hero-card .text-link,
+.fact-strip dd .text-link {
+  padding-block: 0.625rem;
+  margin-block: -0.625rem;
+}
+
 /* Process — ruled timeline with caramel markers */
 .process-list {
   display: grid;
