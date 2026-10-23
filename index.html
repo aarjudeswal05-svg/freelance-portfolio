@@ -24,9 +24,9 @@
 
       <nav class="site-nav" aria-label="Primary">
         <ul class="nav-list">
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
           <li><a href="#work">Work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -92,23 +92,87 @@
       </div>
     </section>
 
-    <!--
-      Section shells still to be filled in:
-      Stage 3 — Work (project)
-      Stage 4 — Contact and footer
-    -->
+    <!-- ===== Work — full project showcase is built in R3 ===== -->
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-label"><span>01</span> Work</p>
+          <h2 class="section-title" id="work-title">Selected work</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section class="section section--alt" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div>
+            <p class="section-label"><span>02</span> Services</p>
+            <h2 class="section-title" id="services-title">What I can help with</h2>
+          </div>
+          <p class="section-intro">
+            Focused website projects for cafés and small businesses, designed
+            with care and built by hand.
+          </p>
+        </div>
+
+        <ol class="service-list" role="list">
+          <li class="service">
+            <span class="service-index" aria-hidden="true">i.</span>
+            <h3 class="service-title">Café &amp; small business websites</h3>
+            <p class="service-text">
+              A clear multi-page website with your story, menu or services,
+              opening hours, location and contact details, designed around
+              what your customers look for first.
+            </p>
+          </li>
+          <li class="service">
+            <span class="service-index" aria-hidden="true">ii.</span>
+            <h3 class="service-title">Responsive design</h3>
+            <p class="service-text">
+              Layouts that adapt to phones, tablets and desktops, with readable
+              text, comfortable tap targets and navigation that’s easy to use
+              on a small screen.
+            </p>
+          </li>
+          <li class="service">
+            <span class="service-index" aria-hidden="true">iii.</span>
+            <h3 class="service-title">Website refresh</h3>
+            <p class="service-text">
+              Updating the look, layout and content of an existing simple static
+              website so it feels current and works properly on mobile.
+            </p>
+          </li>
+          <li class="service">
+            <span class="service-index" aria-hidden="true">iv.</span>
+            <h3 class="service-title">Launch on GitHub Pages</h3>
+            <p class="service-text">
+              Publishing your finished static website on GitHub Pages so it’s live
+              at a link you can share, with the source files kept safely in Git.
+            </p>
+          </li>
+        </ol>
+
+        <p class="scope-note">
+          <span>Good to know</span>
+          Every site I build is a static website made with HTML, CSS and
+          JavaScript: a good fit for presenting your business, menu, opening
+          hours, photos and contact details.
+        </p>
+      </div>
+    </section>
 
     <!-- ===== About ===== -->
     <section class="section" id="about" aria-labelledby="about-title">
-      <div class="container split">
-        <div class="section-head">
-          <p class="section-label"><span>01</span> About</p>
-          <h2 class="section-title" id="about-title">Starting out, and building with care.</h2>
-        </div>
+      <div class="container">
+        <div class="split">
+          <div class="section-head">
+            <p class="section-label"><span>03</span> About</p>
+            <h2 class="section-title" id="about-title">Starting out, and building with care.</h2>
+          </div>
 
-        <div class="about-body">
           <div class="prose">
-            <p>
+            <p class="prose-lead">
               I’m Aarju Deswal, a website designer at the start of my freelance
               journey. I want to help cafés, small local businesses and new
               startups, where a clear, trustworthy website can make the difference
@@ -116,159 +180,47 @@
             </p>
             <p>
               My first complete project is Ember &amp; Oak Coffee House, a
-              five-page café demo website built with HTML, CSS and JavaScript and
-              published on GitHub Pages. Working on it showed me how much the small
-              things matter: a menu that’s easy to read, opening hours you can find
-              quickly, and navigation that works on every screen.
+              five-page concept website for a fictional café, built with HTML, CSS
+              and JavaScript and published on GitHub Pages. Working on it showed me
+              how much the small things matter: a menu that’s easy to read, opening
+              hours you can find quickly, and navigation that works on every screen.
             </p>
             <p>
               Because I’m early in my career, I keep projects focused, communicate
               clearly, and I’m upfront about what I can and can’t do yet.
             </p>
           </div>
-
-          <dl class="fact-list">
-            <div>
-              <dt>Focus</dt>
-              <dd>Cafés, small businesses and startups</dd>
-            </div>
-            <div>
-              <dt>Currently</dt>
-              <dd>Taking on my first freelance projects</dd>
-            </div>
-            <div>
-              <dt>Approach</dt>
-              <dd>Hand-coded HTML, CSS and JavaScript</dd>
-            </div>
-            <div>
-              <dt>Latest work</dt>
-              <dd><a class="text-link" href="#work">Ember &amp; Oak Coffee House</a></dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Services ===== -->
-    <section class="section" id="services" aria-labelledby="services-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-label"><span>02</span> Services</p>
-          <h2 class="section-title" id="services-title">What I can help with</h2>
-          <p class="section-intro">
-            Small, well-defined website projects where I can do careful,
-            thorough work.
-          </p>
         </div>
 
-        <ul class="card-grid card-grid--2" role="list">
-          <li class="card">
-            <span class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 9.5 4.5 4h15L21 9.5M3 9.5h18M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M5 12v8h14v-8M10 20v-5h4v5"/></svg>
-            </span>
-            <h3 class="card-title">Café &amp; small business websites</h3>
-            <p class="card-text">
-              A clear multi-page website with your story, menu or services,
-              opening hours, location and contact details, designed around
-              what your customers look for first.
-            </p>
-          </li>
-          <li class="card">
-            <span class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22"><rect x="2" y="4" width="14" height="11" rx="1.5"/><rect x="15" y="9" width="7" height="12" rx="1.5"/><path d="M6 19h6"/></svg>
-            </span>
-            <h3 class="card-title">Responsive design</h3>
-            <p class="card-text">
-              Layouts that adapt to phones, tablets and desktops, with readable
-              text, comfortable tap targets and navigation that’s easy to use
-              on a small screen.
-            </p>
-          </li>
-          <li class="card">
-            <span class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></svg>
-            </span>
-            <h3 class="card-title">Website refresh</h3>
-            <p class="card-text">
-              Updating the look, layout and content of an existing simple static
-              website so it feels current and works properly on mobile.
-            </p>
-          </li>
-          <li class="card">
-            <span class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
-            </span>
-            <h3 class="card-title">Launch on GitHub Pages</h3>
-            <p class="card-text">
-              Publishing your finished static website on GitHub Pages so it’s live
-              at a link you can share, with the source files kept safely in Git.
-            </p>
-          </li>
-        </ul>
-
-        <p class="scope-note">
-          <strong>Not offered yet:</strong> online shops, booking or payment
-          systems, and content management systems such as WordPress. If your
-          project needs one of these, I’ll tell you honestly rather than take it on.
-        </p>
-      </div>
-    </section>
-
-    <section class="section" id="work" aria-labelledby="work-title">
-      <div class="container">
-        <p class="section-label"><span>03</span> Work</p>
-        <h2 class="section-title" id="work-title">Selected project</h2>
-      </div>
-    </section>
-
-    <!-- ===== Skills ===== -->
-    <!-- Only skills shown in real, published work. Each line points to where it was used. -->
-    <section class="section" id="skills" aria-labelledby="skills-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-label"><span>04</span> Skills</p>
-          <h2 class="section-title" id="skills-title">Tools I work with</h2>
-          <p class="section-intro">
-            The tools behind my published work, each with an example of where
-            I used it in the Ember &amp; Oak project.
-          </p>
-        </div>
-
-        <ul class="skill-grid" role="list">
-          <li class="skill">
-            <h3 class="skill-name">HTML</h3>
-            <p class="skill-text">Semantic, five-page site structure with landmarks, a skip link and a clear heading order.</p>
-          </li>
-          <li class="skill">
-            <h3 class="skill-name">CSS</h3>
-            <p class="skill-text">Shared design tokens, flexible grid layouts and subtle animations that respect reduced-motion settings.</p>
-          </li>
-          <li class="skill">
-            <h3 class="skill-name">JavaScript</h3>
-            <p class="skill-text">An accessible mobile menu, keyboard-friendly menu tabs, a photo lightbox and a live “open now” status.</p>
-          </li>
-          <li class="skill">
-            <h3 class="skill-name">Responsive design</h3>
-            <p class="skill-text">Layouts checked from small phones up to wide desktops, with all content still readable without JavaScript.</p>
-          </li>
-          <li class="skill">
-            <h3 class="skill-name">Git &amp; GitHub</h3>
-            <p class="skill-text">Version history built in small, clearly described commits, stored on GitHub.</p>
-          </li>
-          <li class="skill">
-            <h3 class="skill-name">GitHub Pages</h3>
-            <p class="skill-text">Published the finished site so it’s live and viewable at a public link.</p>
-          </li>
-        </ul>
+        <dl class="fact-strip">
+          <div>
+            <dt>Focus</dt>
+            <dd>Cafés, small businesses and startups</dd>
+          </div>
+          <div>
+            <dt>Currently</dt>
+            <dd>Taking on my first freelance projects</dd>
+          </div>
+          <div>
+            <dt>Approach</dt>
+            <dd>Hand-coded HTML, CSS and JavaScript</dd>
+          </div>
+          <div>
+            <dt>Latest work</dt>
+            <dd><a class="text-link" href="#work">Ember &amp; Oak (concept)</a></dd>
+          </div>
+        </dl>
       </div>
     </section>
 
     <!-- ===== Process ===== -->
-    <section class="section" id="process" aria-labelledby="process-title">
+    <section class="section section--alt" id="process" aria-labelledby="process-title">
       <div class="container">
-        <div class="section-head">
-          <p class="section-label"><span>05</span> Process</p>
-          <h2 class="section-title" id="process-title">How a project works with me</h2>
+        <div class="section-head section-head--row">
+          <div>
+            <p class="section-label"><span>04</span> Process</p>
+            <h2 class="section-title" id="process-title">How a project works with me</h2>
+          </div>
           <p class="section-intro">
             A simple, transparent process, so you always know what’s happening
             and what comes next.
@@ -299,10 +251,10 @@
             <h3 class="step-title">Build</h3>
             <p class="step-text">
               I hand-code the site in HTML, CSS and JavaScript, checking it at
-              phone, tablet and desktop sizes as I go and sharing progress along
-              the way.
+              phone, tablet and desktop sizes as I go, and keep you updated at
+              the points we agree on.
             </p>
-            <p class="step-outcome"><span>You get</span> Regular progress previews</p>
+            <p class="step-outcome"><span>You get</span> Clear updates on progress</p>
           </li>
           <li class="step">
             <span class="step-number" aria-hidden="true">04</span>
@@ -314,6 +266,48 @@
             <p class="step-outcome"><span>You get</span> A live website and its source files</p>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <!-- Only skills shown in real, published work. Each line points to where it was used. -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container split">
+        <div class="section-head">
+          <p class="section-label"><span>05</span> Skills</p>
+          <h2 class="section-title" id="skills-title">Tools I work with</h2>
+          <p class="section-intro">
+            The tools behind my published work, each with an example of where
+            I used it in the Ember &amp; Oak concept project.
+          </p>
+        </div>
+
+        <ul class="skill-list" role="list">
+          <li class="skill">
+            <h3 class="skill-name">HTML</h3>
+            <p class="skill-text">Semantic, five-page site structure with landmarks, a skip link and a clear heading order.</p>
+          </li>
+          <li class="skill">
+            <h3 class="skill-name">CSS</h3>
+            <p class="skill-text">Shared design tokens, flexible grid layouts and subtle animations that respect reduced-motion settings.</p>
+          </li>
+          <li class="skill">
+            <h3 class="skill-name">JavaScript</h3>
+            <p class="skill-text">An accessible mobile menu, keyboard-friendly menu tabs, a photo lightbox and a live “open now” status.</p>
+          </li>
+          <li class="skill">
+            <h3 class="skill-name">Responsive design</h3>
+            <p class="skill-text">Layouts checked from small phones up to wide desktops, with all content still readable without JavaScript.</p>
+          </li>
+          <li class="skill">
+            <h3 class="skill-name">Git &amp; GitHub</h3>
+            <p class="skill-text">Version history built in small, clearly described commits, stored on GitHub.</p>
+          </li>
+          <li class="skill">
+            <h3 class="skill-name">GitHub Pages</h3>
+            <p class="skill-text">Published the finished site so it’s live and viewable at a public link.</p>
+          </li>
+        </ul>
       </div>
     </section>
 

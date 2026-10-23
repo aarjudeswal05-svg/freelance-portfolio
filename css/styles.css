@@ -31,7 +31,6 @@
   --color-accent: var(--color-olive-ink);
   --color-accent-strong: var(--color-ink);
   --color-on-accent: var(--color-surface);
-  --color-accent-tint: #E9EBE2; /* icon backgrounds */
 
   /* Type — fallbacks keep the editorial feel if Google Fonts can't load */
   --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
@@ -59,7 +58,6 @@
   --radius-pill: 999px;         /* dots and the brand mark only */
   --header-h: 4.75rem;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --shadow-soft: 0 1px 2px rgb(36 40 32 / 0.04), 0 12px 32px -18px rgb(36 40 32 / 0.22);
 }
 
 /* ---------- 2. Base & reset ---------- */
@@ -513,196 +511,195 @@ a {
   border-top: 1px solid var(--color-line);
 }
 
+/* Alternating ivory band for rhythm between sections */
+.section--alt {
+  background: var(--color-bg-alt);
+  border-top-color: transparent;
+}
+
 .section-label {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.75rem;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
   color: var(--color-ink-soft);
-  font-size: var(--text-sm);
+  font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .section-label span {
-  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-olive-ink);
   font-variant-numeric: tabular-nums;
 }
 
+.section-label span::after {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: var(--color-olive);
+}
+
 .section-title {
-  max-width: 20ch;
-  font: 500 var(--text-h2)/1.1 var(--font-display);
-  letter-spacing: -0.02em;
+  max-width: 16ch;
+  font: 400 var(--text-h2)/1.04 var(--font-display);
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144;
+  text-wrap: balance;
 }
 
 .section-head {
-  margin-bottom: var(--space-5);
+  margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+}
+
+/* Heading left, intro right, aligned on the baseline of the title */
+.section-head--row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: end;
+  gap: var(--space-3) clamp(2rem, 1rem + 4vw, 5rem);
 }
 
 .section-intro {
-  max-width: 38rem;
+  max-width: 30rem;
   margin-top: var(--space-3);
   color: var(--color-ink-soft);
   font-size: var(--text-lg);
+}
+
+.section-head--row .section-intro {
+  margin-top: 0;
 }
 
 /* Two-column layout: heading left, content right */
 .split {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  gap: clamp(2rem, 1rem + 4vw, 6rem);
 }
 
 .split .section-head {
   margin-bottom: 0;
 }
 
-/* About */
+/* Services — numbered editorial list */
+.service-list {
+  border-top: 1px solid var(--color-ink);
+}
+
+.service {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  padding-block: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+  border-bottom: 1px solid var(--color-line-strong);
+}
+
+.service-index {
+  color: var(--color-olive-ink);
+  font: italic 400 1.125rem/1 var(--font-display);
+}
+
+.service-title {
+  font: 400 clamp(1.5rem, 1.2rem + 1vw, 2.125rem)/1.12 var(--font-display);
+  letter-spacing: -0.02em;
+  transition: color 0.25s var(--ease);
+}
+
+.service:hover .service-title {
+  color: var(--color-olive-ink);
+}
+
+.service-text {
+  max-width: 34rem;
+  color: var(--color-ink-soft);
+}
+
+.scope-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1rem;
+  max-width: 48rem;
+  margin-top: var(--space-4);
+  color: var(--color-ink-soft);
+  font-size: 0.9375rem;
+}
+
+.scope-note span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.scope-note span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-caramel);
+}
+
+/* About — serif lead paragraph and a ruled fact strip */
 .prose {
-  max-width: 40rem;
+  max-width: 38rem;
   font-size: var(--text-lg);
 }
 
 .prose p + p {
   margin-top: var(--space-3);
-}
-
-.fact-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 var(--space-4);
-  max-width: 40rem;
-  margin-top: var(--space-5);
-}
-
-.fact-list > div {
-  padding-block: var(--space-2);
-  border-top: 1px solid var(--color-line);
-}
-
-.fact-list dt {
   color: var(--color-ink-soft);
-  font-size: 0.8125rem;
+}
+
+.prose-lead {
+  font: 400 clamp(1.375rem, 1.15rem + 0.8vw, 1.75rem)/1.4 var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.fact-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(3rem, 2rem + 3vw, 5rem) 0 0;
+  border-top: 1px solid var(--color-ink);
+}
+
+.fact-strip > div {
+  padding: var(--space-3) var(--space-3) 0 0;
+}
+
+.fact-strip > div + div {
+  padding-left: var(--space-3);
+  border-left: 1px solid var(--color-line);
+}
+
+.fact-strip dt {
+  color: var(--color-ink-soft);
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.fact-list dd {
-  margin: 0.25rem 0 0;
-  font-weight: 500;
+.fact-strip dd {
+  margin: 0.5rem 0 0;
+  font: 400 1.1875rem/1.35 var(--font-display);
 }
 
-/* Services */
-.card-grid {
-  display: grid;
-  gap: var(--space-3);
+.fact-strip dd .text-link {
+  font: inherit;
 }
 
-.card-grid--2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.card {
-  padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius);
-  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
-}
-
-.card:hover {
-  border-color: var(--color-line-strong);
-  box-shadow: var(--shadow-soft);
-}
-
-.card-icon {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin-bottom: var(--space-3);
-  border-radius: 50%;
-  background: var(--color-accent-tint);
-  color: var(--color-accent);
-  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
-}
-
-.card-icon svg {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.card:hover .card-icon {
-  background: var(--color-accent);
-  color: var(--color-on-accent);
-}
-
-.card-title {
-  font: 500 1.375rem/1.25 var(--font-display);
-  letter-spacing: -0.01em;
-}
-
-.card-text {
-  margin-top: var(--space-1);
-  color: var(--color-ink-soft);
-}
-
-.scope-note {
-  max-width: 44rem;
-  margin-top: var(--space-4);
-  padding-left: var(--space-2);
-  border-left: 2px solid var(--color-accent);
-  color: var(--color-ink-soft);
-  font-size: 0.9375rem;
-}
-
-.scope-note strong {
-  color: var(--color-ink);
-  font-weight: 600;
-}
-
-/* Skills */
-.skill-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--color-line);
-}
-
-.skill {
-  padding: var(--space-4) var(--space-4) var(--space-4) 0;
-  border-bottom: 1px solid var(--color-line);
-}
-
-.skill-name {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font: 500 1.375rem/1.25 var(--font-display);
-  letter-spacing: -0.01em;
-}
-
-.skill-name::before {
-  content: "";
-  flex: none;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--color-accent);
-}
-
-.skill-text {
-  max-width: 22rem;
-  margin-top: var(--space-1);
-  color: var(--color-ink-soft);
-  font-size: 0.9375rem;
-}
-
-/* Process */
+/* Process — ruled timeline with caramel markers */
 .process-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -710,22 +707,34 @@ a {
 }
 
 .step {
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding-top: var(--space-3);
-  border-top: 1.5px solid var(--color-ink);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-ink);
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-caramel);
 }
 
 .step-number {
-  color: var(--color-accent);
-  font: 400 2.5rem/1 var(--font-display);
+  color: var(--color-olive); /* decorative and hidden from screen readers */
+  font: italic 300 clamp(2.75rem, 2rem + 2vw, 3.75rem)/1 var(--font-display);
   font-variant-numeric: tabular-nums;
 }
 
 .step-title {
   margin-top: var(--space-3);
-  font: 500 1.375rem/1.25 var(--font-display);
-  letter-spacing: -0.01em;
+  font: 400 1.5rem/1.2 var(--font-display);
+  letter-spacing: -0.015em;
 }
 
 .step-text {
@@ -743,10 +752,35 @@ a {
 
 .step-outcome span {
   display: block;
-  color: var(--color-ink-soft);
+  margin-bottom: 0.15rem;
+  color: var(--color-caramel-ink);
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* Skills — ruled two-column list */
+.skill-list {
+  border-top: 1px solid var(--color-ink);
+}
+
+.skill {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  align-items: baseline;
+  gap: var(--space-1) var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.skill-name {
+  font: 400 1.375rem/1.2 var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+.skill-text {
+  color: var(--color-ink-soft);
+  font-size: 0.9375rem;
 }
 
 /* ---------- 8. Responsive ---------- */
@@ -773,12 +807,39 @@ a {
     display: none;
   }
 
-  .split {
+  .split,
+  .section-head--row {
     grid-template-columns: 1fr;
   }
 
-  .skill-grid {
+  .section-head--row {
+    align-items: start;
+  }
+
+  /* Description drops under the title, still indented past the numeral */
+  .service {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+
+  .service-text {
+    grid-column: 2;
+  }
+
+  .fact-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fact-strip > div {
+    padding-bottom: var(--space-3);
+  }
+
+  .fact-strip > div:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .fact-strip > div:nth-child(n + 3) {
+    border-top: 1px solid var(--color-line);
   }
 
   .process-list {
@@ -788,18 +849,33 @@ a {
 }
 
 @media (max-width: 640px) {
-  .card-grid--2,
-  .skill-grid,
   .process-list {
     grid-template-columns: 1fr;
   }
 
-  .skill {
-    padding-right: 0;
+  .service {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: var(--space-1) var(--space-2);
   }
 
-  .fact-list {
+  .fact-strip {
     grid-template-columns: 1fr;
+  }
+
+  /* "div + div" matches the desktop divider rule's specificity so this reset wins */
+  .fact-strip > div,
+  .fact-strip > div + div {
+    padding: var(--space-2) 0;
+    border-left: 0;
+  }
+
+  .fact-strip > div + div {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .skill {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
   }
 }
 
