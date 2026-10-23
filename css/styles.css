@@ -788,6 +788,11 @@ a {
   .hero {
     --ring-top: 8.5rem; /* keeps the caramel point clear of the project card */
   }
+
+  /* Six links plus brand and button must share one row down to 761px */
+  .nav-list {
+    gap: 1.1rem;
+  }
 }
 
 @media (max-width: 900px) {
@@ -925,7 +930,10 @@ a {
   .header-inner {
     padding-block-start: 0.6rem;
   }
+}
 
+/* The six-link row no longer fits below ~480px, so it scrolls sideways */
+@media (max-width: 480px) {
   .site-nav {
     /* Fade hints that the row scrolls sideways */
     -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
